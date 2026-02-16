@@ -49,6 +49,7 @@ export default {
 		OCA.Assistant.openAssistantForm({
 			appId: 'assistant',
 			taskType: this.taskType,
+			taskTypeIdList: [this.taskType],
 			closeOnResult: false,
 			actionButtons: [
 				{
