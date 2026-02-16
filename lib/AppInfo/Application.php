@@ -114,8 +114,9 @@ class Application extends App implements IBootstrap {
 		$context->registerTaskProcessingProvider(TextToStickerProvider::class);
 		$context->registerReferenceProvider(Text2StickerProvider::class);
 
-		$context->registerTaskProcessingTaskType(ImageToTextTranslateTaskType::class);
-		$context->registerTaskProcessingProvider(ImageToTextTranslateProvider::class);
+		// not ready yet
+		// $context->registerTaskProcessingTaskType(ImageToTextTranslateTaskType::class);
+		// $context->registerTaskProcessingProvider(ImageToTextTranslateProvider::class);
 	}
 
 	public function boot(IBootContext $context): void {
