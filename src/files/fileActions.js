@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { registerFileAction, Permission, FileAction, FileType } from '@nextcloud/files'
+import { registerFileAction, Permission, FileType } from '@nextcloud/files'
 import { loadState } from '@nextcloud/initial-state'
 
 import CreationSvgIcon from '@mdi/svg/svg/creation.svg?raw'
@@ -18,7 +18,7 @@ const actionIgnoreLists = [
 ]
 
 function registerGroupAction(mimeTypes) {
-	const groupAction = new FileAction({
+	const groupAction = {
 		id: 'assistant-group',
 		displayName: ({ nodes }) => {
 			return t('assistant', 'AI Assistant')
@@ -35,12 +35,12 @@ function registerGroupAction(mimeTypes) {
 		async exec() {
 			return null
 		},
-	})
+	}
 	registerFileAction(groupAction)
 }
 
 function registerSummarizeAction() {
-	const summarizeAction = new FileAction({
+	const summarizeAction = {
 		id: 'assistant-summarize',
 		parent: 'assistant-group',
 		displayName: ({ nodes }) => {
@@ -74,12 +74,12 @@ function registerSummarizeAction() {
 			}
 			return null
 		},
-	})
+	}
 	registerFileAction(summarizeAction)
 }
 
 function registerTtsAction() {
-	const ttsAction = new FileAction({
+	const ttsAction = {
 		id: 'assistant-tts',
 		parent: 'assistant-group',
 		displayName: ({ nodes }) => {
@@ -113,12 +113,12 @@ function registerTtsAction() {
 			}
 			return null
 		},
-	})
+	}
 	registerFileAction(ttsAction)
 }
 
 function registerSttAction() {
-	const sttAction = new FileAction({
+	const sttAction = {
 		id: 'assistant-stt',
 		parent: 'assistant-group',
 		displayName: ({ nodes }) => {
@@ -152,7 +152,7 @@ function registerSttAction() {
 			}
 			return null
 		},
-	})
+	}
 	registerFileAction(sttAction)
 }
 
