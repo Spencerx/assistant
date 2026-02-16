@@ -57,7 +57,7 @@ class SessionSummaryService {
 
 				$task = new Task(TextToText::ID, [
 					'input' => $prompt,
-				], 'assistant', $session->getUserId());
+				], 'assistant:summary-service', $session->getUserId());
 				$output = $this->taskProcessingService->runTaskProcessingTask($task);
 				$session->setSummary($output['output']);
 				$session->setIsSummaryUpToDate(true);
