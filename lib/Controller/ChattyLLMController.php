@@ -422,7 +422,9 @@ class ChattyLLMController extends OCSController {
 				array_shift($messages);
 			}
 
-			return new JSONResponse(array_map(static function (Message $message) { return $message->jsonSerialize(); }, $messages));
+			return new JSONResponse(array_map(static function (Message $message) {
+				return $message->jsonSerialize();
+			}, $messages));
 		} catch (\OCP\DB\Exception $e) {
 			$this->logger->warning('Failed to get chat messages', ['exception' => $e]);
 			return new JSONResponse(['error' => $this->l10n->t('Failed to get chat messages')], Http::STATUS_INTERNAL_SERVER_ERROR);
