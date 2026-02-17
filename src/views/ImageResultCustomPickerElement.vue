@@ -64,6 +64,7 @@ export default {
 			inputs: this.inputs,
 			appId: 'assistant',
 			taskType: this.taskType,
+			taskTypeIdList: [this.taskType],
 			closeOnResult: false,
 			actionButtons: [
 				{
