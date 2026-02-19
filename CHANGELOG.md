@@ -10,6 +10,24 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 
+## 3.3.0 - 2026-02-19
+
+### Added
+
+### Changed
+
+- Expose task categories in getAvailableTaskTypes @janepie [#450](https://github.com/nextcloud/assistant/pull/450)
+- Make the notecards about missing features less alarming @julien-nc [#436](https://github.com/nextcloud/assistant/pull/436)
+- Update screenshots in user docs and add memories @janepie [#455](https://github.com/nextcloud/assistant/pull/455)
+- Restrict the task type list when invoking the assistant from the picker @julien-nc [#457](https://github.com/nextcloud/assistant/pull/457)
+- Only get the tasks of the current user when checking message/title generation tasks @julien-nc [#467](https://github.com/nextcloud/assistant/pull/467)
+
+### Fix
+
+- Fix(ChattyLLM): Fix title generation to work with languages other than english @marcelklehr [#451](https://github.com/nextcloud/assistant/pull/451)
+- Make summary service appId for the task specific @janepie [#456](https://github.com/nextcloud/assistant/pull/456)
+- Fix breaking change with file actions in nextcloud/files 4.0.0 @julien-nc [#457](https://github.com/nextcloud/assistant/pull/457)
+
 ## 3.2.0 - 2026-01-28
 
 ### Added 
