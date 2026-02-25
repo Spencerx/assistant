@@ -39,10 +39,15 @@ class Version020201Date20250120174409 extends SimpleMigrationStep {
 		];
 		foreach ($keysToFix as $key) {
 			if ($this->appConfig->hasKey(Application::APP_ID, $key)
-				&& $this->appConfig->getValueType(Application::APP_ID, $key) === IAppConfig::VALUE_INT) {
-				$value = $this->appConfig->getValueInt(Application::APP_ID, $key);
+				&& $this->appConfig->getValueType(Application::APP_ID, $key, lazy: true) === IAppConfig::VALUE_INT) {
+				$value = $this->appConfig->getValueInt(Application::APP_ID, $key, lazy: true);
 				$this->appConfig->deleteKey(Application::APP_ID, $key);
-				$this->appConfig->setValueString(Application::APP_ID, $key, (string)$value);
+				if ($key == 'assistant_enabled') {
+					// do not lazy store assistant_enabled as it is needed for capabilities
+					$this->appConfig->setValueString(Application::APP_ID, $key, (string)$value);
+				} else {
+					$this->appConfig->setValueString(Application::APP_ID, $key, (string)$value, lazy: true);
+				}
 			}
 		}
 	}

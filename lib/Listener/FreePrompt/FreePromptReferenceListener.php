@@ -36,7 +36,7 @@ class FreePromptReferenceListener implements IEventListener {
 			return;
 		}
 
-		if ($this->appConfig->getValueString(Application::APP_ID, 'free_prompt_picker_enabled', '1') === '1'
+		if ($this->appConfig->getValueString(Application::APP_ID, 'free_prompt_picker_enabled', '1', lazy: true) === '1'
 			&& $this->config->getUserValue($this->userId, Application::APP_ID, 'free_prompt_picker_enabled', '1') === '1') {
 
 			// Double check that at least one provider is registered

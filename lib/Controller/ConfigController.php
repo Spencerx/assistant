@@ -64,7 +64,12 @@ class ConfigController extends Controller {
 	 */
 	public function setAdminConfig(array $values): DataResponse {
 		foreach ($values as $key => $value) {
-			$this->appConfig->setValueString(Application::APP_ID, $key, $value);
+			if ($key == 'assistant_enabled') {
+				// do not lazy store assistant_enabled as it is needed for capabilities
+				$this->appConfig->setValueString(Application::APP_ID, $key, $value);
+			} else {
+				$this->appConfig->setValueString(Application::APP_ID, $key, $value, lazy: true);
+			}
 		}
 		return new DataResponse(1);
 	}

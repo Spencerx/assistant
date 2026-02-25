@@ -58,7 +58,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 
 		$this->eventDispatcher->dispatchTyped(new RenderReferenceEvent());
 
-		$adminAssistantEnabled = $this->appConfig->getValueString(Application::APP_ID, 'assistant_enabled', '1') === '1';
+		$adminAssistantEnabled = $this->appConfig->getValueString(Application::APP_ID, 'assistant_enabled', '1', lazy: true) === '1';
 		$userAssistantEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'assistant_enabled', '1') === '1';
 		$assistantEnabled = $adminAssistantEnabled && $userAssistantEnabled;
 		$this->initialStateService->provideInitialState('assistant-enabled', $assistantEnabled);
@@ -68,7 +68,7 @@ class BeforeTemplateRenderedListener implements IEventListener {
 
 			$lastTargetLanguage = $this->config->getUserValue($this->userId, Application::APP_ID, 'last_target_language', '');
 			$this->initialStateService->provideInitialState('last-target-language', $lastTargetLanguage);
-			$indexingComplete = $this->appConfig->getValueInt('context_chat', 'last_indexed_time', 0) !== 0;
+			$indexingComplete = $this->appConfig->getValueInt('context_chat', 'last_indexed_time', 0, lazy: true) !== 0;
 			$this->initialStateService->provideInitialState('contextChatIndexingComplete', $indexingComplete);
 			$this->initialStateService->provideInitialState('contextAgentToolSources', $this->assistantService->informationSources);
 			$this->initialStateService->provideInitialState('audio_chat_available', $this->assistantService->isAudioChatAvailable());

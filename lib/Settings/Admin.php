@@ -40,18 +40,18 @@ class Admin implements ISettings {
 		$textToImageAvailable = array_key_exists(TextToImage::ID, $availableTaskTypes);
 		$textToStickerAvailable = array_key_exists(TextToStickerTaskType::ID, $availableTaskTypes);
 
-		$assistantEnabled = $this->appConfig->getValueString(Application::APP_ID, 'assistant_enabled', '1') === '1';
+		$assistantEnabled = $this->appConfig->getValueString(Application::APP_ID, 'assistant_enabled', '1', lazy: true) === '1';
 
-		$freePromptPickerEnabled = $this->appConfig->getValueString(Application::APP_ID, 'free_prompt_picker_enabled', '1') === '1';
-		$textToImagePickerEnabled = $this->appConfig->getValueString(Application::APP_ID, 'text_to_image_picker_enabled', '1') === '1';
+		$freePromptPickerEnabled = $this->appConfig->getValueString(Application::APP_ID, 'free_prompt_picker_enabled', '1', lazy: true) === '1';
+		$textToImagePickerEnabled = $this->appConfig->getValueString(Application::APP_ID, 'text_to_image_picker_enabled', '1', lazy: true) === '1';
 		// if we can't generate images, let's assume the sticker picker is disabled
 		// but when image generation will be available again, we have kept the value set by the admin
-		$textToStickerPickerEnabled = $this->appConfig->getValueString(Application::APP_ID, 'text_to_sticker_picker_enabled', '1') === '1';
+		$textToStickerPickerEnabled = $this->appConfig->getValueString(Application::APP_ID, 'text_to_sticker_picker_enabled', '1', lazy: true) === '1';
 
-		$speechToTextEnabled = $this->appConfig->getValueString(Application::APP_ID, 'speech_to_text_picker_enabled', '1') === '1';
-		$chattyLLMUserInstructions = $this->appConfig->getValueString(Application::APP_ID, 'chat_user_instructions', Application::CHAT_USER_INSTRUCTIONS) ?: Application::CHAT_USER_INSTRUCTIONS;
-		$chattyLLMUserInstructionsTitle = $this->appConfig->getValueString(Application::APP_ID, 'chat_user_instructions_title', Application::CHAT_USER_INSTRUCTIONS_TITLE) ?: Application::CHAT_USER_INSTRUCTIONS_TITLE;
-		$chattyLLMLastNMessages = (int)$this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10');
+		$speechToTextEnabled = $this->appConfig->getValueString(Application::APP_ID, 'speech_to_text_picker_enabled', '1', lazy: true) === '1';
+		$chattyLLMUserInstructions = $this->appConfig->getValueString(Application::APP_ID, 'chat_user_instructions', Application::CHAT_USER_INSTRUCTIONS, lazy: true) ?: Application::CHAT_USER_INSTRUCTIONS;
+		$chattyLLMUserInstructionsTitle = $this->appConfig->getValueString(Application::APP_ID, 'chat_user_instructions_title', Application::CHAT_USER_INSTRUCTIONS_TITLE, lazy: true) ?: Application::CHAT_USER_INSTRUCTIONS_TITLE;
+		$chattyLLMLastNMessages = (int)$this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10', lazy: true);
 
 		$adminConfig = [
 			'task_processing_available' => $taskProcessingAvailable,
