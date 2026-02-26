@@ -120,13 +120,13 @@ class SessionSummaryService {
 				if ($session->getSummary() !== null) {
 					$memory = $session->getSummary() ?? '';
 					if (!$session->getIsSummaryUpToDate()) {
-						$lastNMessages = intval($this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10'));
+						$lastNMessages = intval($this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10', lazy: true));
 						$chatHistory = $this->messageMapper->getMessages($session->getId(), 0, $lastNMessages);
 						$memory .= 'The summary is outdated. These are the last messages in the raw chat history: ' . json_encode($chatHistory);
 					}
 
 				} else {
-					$lastNMessages = intval($this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10'));
+					$lastNMessages = intval($this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10', lazy: true));
 					$chatHistory = $this->messageMapper->getMessages($session->getId(), 0, $lastNMessages);
 					$memory = 'This is the raw chat history of a chat between the user and Assistant: ' . json_encode($chatHistory);
 				}

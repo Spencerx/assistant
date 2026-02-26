@@ -134,6 +134,7 @@ class ChattyLLMController extends OCSController {
 			Application::APP_ID,
 			'chat_user_instructions',
 			Application::CHAT_USER_INSTRUCTIONS,
+			lazy: true,
 		) ?: Application::CHAT_USER_INSTRUCTIONS;
 		$userInstructions = str_replace('{user}', $user->getDisplayName(), $userInstructions);
 
@@ -879,6 +880,7 @@ class ChattyLLMController extends OCSController {
 				Application::APP_ID,
 				'chat_user_instructions_title',
 				Application::CHAT_USER_INSTRUCTIONS_TITLE,
+				lazy: true,
 			) ?: Application::CHAT_USER_INSTRUCTIONS_TITLE;
 			$userInstructions = str_replace('{user}', $user->getDisplayName(), $userInstructions);
 
@@ -952,6 +954,7 @@ class ChattyLLMController extends OCSController {
 					Application::APP_ID,
 					'chat_user_instructions_title',
 					Application::CHAT_USER_INSTRUCTIONS_TITLE,
+					lazy: true,
 				) ?: Application::CHAT_USER_INSTRUCTIONS_TITLE;
 				$userInstructions = str_replace('{user}', $user->getDisplayName(), $userInstructions);
 				$title = str_replace($userInstructions, '', $taskOutput);
@@ -982,7 +985,7 @@ class ChattyLLMController extends OCSController {
 	 * @throws \OCP\DB\Exception
 	 */
 	private function getRawLastMessages(int $sessionId): array {
-		$lastNMessages = intval($this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10'));
+		$lastNMessages = intval($this->appConfig->getValueString(Application::APP_ID, 'chat_last_n_messages', '10', lazy: true));
 		$messages = $this->messageMapper->getMessages($sessionId, 0, $lastNMessages);
 
 		if ($messages[0]->getRole() === 'system') {

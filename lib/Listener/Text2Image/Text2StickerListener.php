@@ -36,7 +36,7 @@ class Text2StickerListener implements IEventListener {
 			return;
 		}
 
-		if ($this->appConfig->getValueString(Application::APP_ID, 'text_to_sticker_picker_enabled', '1') === '1'
+		if ($this->appConfig->getValueString(Application::APP_ID, 'text_to_sticker_picker_enabled', '1', lazy: true) === '1'
 			&& $this->config->getUserValue($this->userId, Application::APP_ID, 'text_to_sticker_picker_enabled', '1') === '1') {
 
 			// Double check that all necessary task types are available

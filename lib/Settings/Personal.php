@@ -48,19 +48,19 @@ class Personal implements ISettings {
 			|| (class_exists('OCP\\TaskProcessing\\TaskTypes\\ContextAgentAudioInteraction') && array_key_exists(\OCP\TaskProcessing\TaskTypes\ContextAgentAudioInteraction::ID, $availableTaskTypes));
 		$autoplayAudioChat = $this->config->getUserValue($this->userId, Application::APP_ID, 'autoplay_audio_chat', '1') === '1';
 
-		$assistantAvailable = $taskProcessingAvailable && $this->appConfig->getValueString(Application::APP_ID, 'assistant_enabled', '1') === '1';
+		$assistantAvailable = $taskProcessingAvailable && $this->appConfig->getValueString(Application::APP_ID, 'assistant_enabled', '1', lazy: true) === '1';
 		$assistantEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'assistant_enabled', '1') === '1';
 
-		$textToImagePickerAvailable = $textToImageAvailable && $this->appConfig->getValueString(Application::APP_ID, 'text_to_image_picker_enabled', '1') === '1';
+		$textToImagePickerAvailable = $textToImageAvailable && $this->appConfig->getValueString(Application::APP_ID, 'text_to_image_picker_enabled', '1', lazy: true) === '1';
 		$textToImagePickerEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'text_to_image_picker_enabled', '1') === '1';
 
-		$textToStickerPickerAvailable = $textToImageAvailable && $this->appConfig->getValueString(Application::APP_ID, 'text_to_sticker_picker_enabled', '1') === '1';
+		$textToStickerPickerAvailable = $textToImageAvailable && $this->appConfig->getValueString(Application::APP_ID, 'text_to_sticker_picker_enabled', '1', lazy: true) === '1';
 		$textToStickerPickerEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'text_to_sticker_picker_enabled', '1') === '1';
 
-		$freePromptPickerAvailable = $freePromptTaskTypeAvailable && $this->appConfig->getValueString(Application::APP_ID, 'free_prompt_picker_enabled', '1') === '1';
+		$freePromptPickerAvailable = $freePromptTaskTypeAvailable && $this->appConfig->getValueString(Application::APP_ID, 'free_prompt_picker_enabled', '1', lazy: true) === '1';
 		$freePromptPickerEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'free_prompt_picker_enabled', '1') === '1';
 
-		$speechToTextPickerAvailable = $speechToTextAvailable && $this->appConfig->getValueString(Application::APP_ID, 'speech_to_text_picker_enabled', '1') === '1';
+		$speechToTextPickerAvailable = $speechToTextAvailable && $this->appConfig->getValueString(Application::APP_ID, 'speech_to_text_picker_enabled', '1', lazy: true) === '1';
 		$speechToTextPickerEnabled = $this->config->getUserValue($this->userId, Application::APP_ID, 'speech_to_text_picker_enabled', '1') === '1';
 
 

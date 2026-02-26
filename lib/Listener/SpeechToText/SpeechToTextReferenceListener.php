@@ -34,7 +34,7 @@ class SpeechToTextReferenceListener implements IEventListener {
 		if (!$event instanceof RenderReferenceEvent) {
 			return;
 		}
-		if ($this->appConfig->getValueString(Application::APP_ID, 'speech_to_text_picker_enabled', '1') === '1'
+		if ($this->appConfig->getValueString(Application::APP_ID, 'speech_to_text_picker_enabled', '1', lazy: true) === '1'
 			&& ($this->userId === null || $this->config->getUserValue($this->userId, Application::APP_ID, 'speech_to_text_picker_enabled', '1') === '1')) {
 
 			// Double check that at least one provider is registered
